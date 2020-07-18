@@ -3,9 +3,8 @@ import { Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle } from 'reactst
 import Comments from './CommentsDetails';
 import { DISHES } from '../shared/dishes';
 
-class DishDetail extends Component
-{
-    renderComment(dishId)
+
+   function RenderComment({dishId})
         {
             if(dishId!=null)
             {
@@ -40,7 +39,7 @@ class DishDetail extends Component
 
 
 
-    renderDish(dishId) {
+    function RenderDish({dishId}) {
         if (dishId != null)
         {
             const dish = DISHES.filter(d => d.id === dishId)[0];
@@ -61,21 +60,19 @@ class DishDetail extends Component
             );
           }
         }
-        render()
-        {
+        const DishDetail=(props)=>{
             return(
             <div className="container">
             <div className="row">
                 <div className="col-12 col-md-5 m-1">
-                  {this.renderDish(this.props.selectedDish)}
+                  <RenderDish dishId={props.selectedDish}/>
                 </div>
                 <div className="col-12 col-md">
-                    {this.renderComment(this.props.selectedDish)}
+                    <RenderComment dishId={props.selectedDish}/>
                 </div>
              </div>
                </div> 
 
             );
         }
-}
 export default DishDetail;
