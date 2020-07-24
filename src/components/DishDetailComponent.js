@@ -1,16 +1,15 @@
 import React,{ Component } from 'react';
-import { Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle } from 'reactstrap';
+import { Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle,Breadcrumb,BreadcrumbItem } from 'reactstrap';
 import Comments from './CommentsDetails';
 import { DISHES } from '../shared/dishes';
+import {Link} from 'react-router-dom';
 
-
-   function RenderComment({dishId})
+   function RenderComment({comments})
         {
-            if(dishId!=null)
+            if(comments!=null)
             {
-                const dish = DISHES.filter(d => d.id === dishId)[0];
 
-                const commentsLayout=dish.comments.map((comment)=> {  
+                const commentsLayout=comments.map((comment)=> {  
                  return(
                     <li key={comment.id}>
                         <p>{comment.comment}</p>
@@ -39,10 +38,10 @@ import { DISHES } from '../shared/dishes';
 
 
 
-    function RenderDish({dishId}) {
-        if (dishId != null)
+    function RenderDish({dish}) {
+        if (dish != null)
         {
-            const dish = DISHES.filter(d => d.id === dishId)[0];
+            
 
             return(
                 <Card>
@@ -64,11 +63,23 @@ import { DISHES } from '../shared/dishes';
             return(
             <div className="container">
             <div className="row">
+          <Breadcrumb>
+            <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+             <BreadcrumbItem><Link to='/menu'>Menu</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+          </Breadcrumb>
+          </div>
+          <div className="col-12">
+          <h3>{props.dish.name}</h3>
+          <hr/>
+          </div>
+            <div className="row">
                 <div className="col-12 col-md-5 m-1">
-                  <RenderDish dishId={props.selectedDish}/>
+                  <RenderDish dish={props.dish}/>
                 </div>
                 <div className="col-12 col-md">
-                    <RenderComment dishId={props.selectedDish}/>
+                    <RenderComment comments={props.comments}/>
                 </div>
              </div>
                </div> 
