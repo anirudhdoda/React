@@ -6,6 +6,6 @@
     "\\src\\redux",
     "\\src\\shared"
   ],
-  "SelectedNode": "\\src\\components\\CommentFormComponent.js",
+  "SelectedNode": "\\src\\shared\\baseUrl.js",
   "PreviewInSolutionExplorer": false
 }
